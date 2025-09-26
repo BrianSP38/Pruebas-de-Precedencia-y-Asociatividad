@@ -1,0 +1,33 @@
+Pruebas:
+1) 2+3*4
+2) 20-5-3
+3) 100/10/2
+4) 2+3*(4-5)
+5) 2*3+4
+
+Resultados esperados con la gramática original (prevalece multiplicación sobre suma; asociatividad izquierda):
+
+
+-2+3*4 = 2 + (3*4) = 14
+
+-20-5-3 = (20-5)-3 = 12
+
+-100/10/2 = (100/10)/2 = 5.0
+
+-2+3*(4-5) = 2 + 3*(4-5) = 2 + 3*(-1) = -1
+
+-2*3+4 = (2*3) + 4 = 10
+
+
+Resultados esperados con la gramática rediseñada (hice + con mayor precedencia que *, y asociatividad derecha):
+
+-2+3*4 → (2+3) * 4 = 20
+
+-20-5-3 → 20 - (5 - 3) = 18
+
+-100/10/2 → 100 / (10 / 2) = 20.0
+
+-2+3*(4-5) → (2+3) * (4-5) = 5 * (-1) = -5
+Observación importante: aquí las diferencias son notorias: en la original 2+3*(4-5) = -1; en la rediseñada = -5, porque + se agrupa antes que *.
+
+-2*3+4 → 2 * (3+4) = 14
